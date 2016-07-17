@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="matcher">
+<head>
+    <!--href='/' for support location angular service-->
+    <base href="/">
+    <meta charset="UTF-8">
+    <title>You And Your Matcher</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/css/bootstrap-responsive.css" rel="stylesheet">
+    <link href="http://getbootstrap.com/2.3.2/assets/css/bootstrap-responsive.css" rel="stylesheet">
+    <!-- hamburger CSS -->
+    <link rel="stylesheet" href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/css/hamburger.css">
+    <!-- our css -->
+    <link rel="stylesheet" type="text/css" href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/css/style.css" />
+    <link rel="stylesheet" type="text/css" href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/css/circle.css" />
+    <!-- Google API -->
+    <meta name="google-signin-client_id" content="674007506813-o5gqpeki60939l9go777gsrnqk8adr3n.apps.googleusercontent.com">
+    <!-- gallery -->
+    <link rel="stylesheet" type="text/css" href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/css/gallery.css">
+</head>
+<!-- sign out from system -->
+<script src="https://apis.google.com/js/platform.js?onload=onLoad" async defer></script>
+<script>
+    function signOut() {
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(function () {
+        console.log('User signed out.');
+	window.location.assign("http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/");
+      });
+    }
+
+    function onLoad() {
+      gapi.load('auth2', function() {
+        gapi.auth2.init();
+      });
+    }
+</script>
+
+<body>
+    <header id="top" role="banner">
+        <div class="block">
+            <a class="nav-btn" id="nav-open-btn" href="#nav">Book Navigation</a>
+            <div ng-controller="header">
+                <a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}" target="_self"><img id="logo" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/logo.png"> </a>
+                <a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}" target="_self"><img id="user" src="{{header.userData.user[0].imageUrl}}">  </a>
+            </div>
+         </div>
+    </header>
+
+    <nav id="nav" role="navigation">
+        <div class="block">
+            <div ng-controller="hamburger">
+                <h2 class="block-title">Chapters</h2>
+                <ul>
+                    <li class="is-active"><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}" target="_self">Homepage</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=sunday" target="_self">Sunday</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=monday" target="_self">Monday</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=thesday" target="_self">Thesday</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=wednesday" target="_self">Wednesday</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=thursday" target="_self">Thursday</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=friday" target="_self">Friday</a></li>
+                    <li><a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}&day=saturday" target="_self">Saturday</a></li>
+                    <li><a href="#" onclick="signOut();">Sign out</a></li>
+                </ul>
+                <a class="close-btn" id="nav-close-btn" href="#top">Return to Content</a>
+            </div>
+        </div>
+    </nav>  
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <div ng-controller="matcherData">
+                <div id="section1" class="matcherBorder">
+                    <a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/timeLine.html?uuid={{myUrl}}" target="_self" ><img id="horosLogo" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/logo/{{matcher.userData.user[0].zodiac}}.png"></a>
+                    <h1 id="today">{{matcher.userSystem[0].title_full_horo}}</h1>
+                </div>
+                <div class="row" id="matcher"> 
+                    <h2>DAILY MATCH</h2>
+                    <p id="matcherName">You and <span id="???">{{matcher.userData.matcher[0].name | capitalize }} {{matcher.userData.matcher[0].lastName | capitalize }}</span> </p> 
+                    <div class="" id="mathcerpic">
+            		    <img src="{{matcher.userData.matcher[0].imageUrl}}" class="horoM1"> 
+                        <img id="matcherHoro" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/zodiac/{{matcher.userData.matcher[0].zodiac}}.png">
+                        <div class="matcherDetails">
+                            <h4>{{matcher.userData.matcher[0].zodiac | capitalize }}</h4>
+                            <h4>{{matchValue}}%</h4>
+                        </div>
+                    </div>
+                 </div>
+
+                <div class="row" id="matcherLike">
+
+                    <p id="matcherName"><span id="???">{{matcher.userData.matcher[0].name | capitalize }} {{matcher.userData.matcher[0].lastName | capitalize }}</span> likes</p>
+
+                     <div class="col-sm-6 col-md-4 col-lg-2">
+
+                             <div class="c100 p{{matcher.userData.matcher[0].travel}} small">
+
+                                <div class="slice">
+
+                                    <div class="bar"></div>
+
+                                    <div class="fill"></div>
+
+                                </div>
+
+                                    <a class="travel" href="#"><img class="travel" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/travel.png"> </a>
+
+                            </div>
+
+                            <h4>Travel</h4>
+
+                     </div>
+
+                     <div class="col-sm-6 col-md-4 col-lg-2"> 
+                            <div class="c100 p{{matcher.userData.matcher[0].art}} small">
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                                 <a class="art" href="#"><img class="art" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/art.png"> </a>
+                            </div>
+                            <h4>Art</h4>
+
+                     </div>
+                     <div class="col-sm-6 col-md-4 col-lg-2">
+                            <div class="c100 p{{matcher.userData.matcher[0].nature}} small">
+                                <div class="slice">
+                                    <div class="bar"></div>
+                                    <div class="fill"></div>
+                                </div>
+                                <a class="nature" href="#"><img class="nature" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/nature.png"> </a>
+                            </div>
+                             <h4>Nature</h4>
+                     </div>
+                </div>
+                <p class="comment more" id="matcherTwo">{{matcher.horoMatcher.matcher_horo[0].text}} {{jsFunction()}} </p>
+                <a id="contactUs" href="mailto:shenkar.ws1@gmail.com?Subject=Horoscope">Have an urgent question? <br> Contact Us</a>  
+             </div>
+         </div>
+    </div>
+
+    <div class="col-sm-12">
+        <footer>
+            <p>© Copyright 2016 Shenkar-College Students: <span> Niv Baruch && Alaa Halumi</span></p>
+        </footer>
+    </div>
+
+<script>
+
+function seeMore(){
+
+    console.log("inside see more");
+    var showChar = 570;
+    var ellipsestext = "...";
+    var moretext = "See more>>";
+    var lesstext = "See less<<";
+    $('.more').each(function() {
+
+        var content = $(this).html();
+        if(content.length > showChar) {
+            var c = content.substr(0, showChar);
+            var h = content.substr(showChar-1, content.length - showChar);
+            var html = c + '<span class="moreelipses">'+ellipsestext+'</span>&nbsp;<span class="morecontent"><span>' + h + '</span>&nbsp;&nbsp;<a href="" class="morelink">'+moretext+'</a></span>';
+            $(this).html(html);
+        }
+    });
+
+    $(".morelink").click(function(){
+        if($(this).hasClass("less")) {
+            $(this).removeClass("less");
+            $(this).html(moretext);
+        } else {
+            $(this).addClass("less");
+            $(this).html(lesstext);
+        }
+        $(this).parent().prev().toggle();
+        $(this).prev().toggle();
+        return false;
+    });
+
+}
+
+</script>
+
+    <script src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/js/lib/angular/angular.min.js"></script>
+    <script src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/js/matcher.js"></script>
+
+</body>
+</html>   

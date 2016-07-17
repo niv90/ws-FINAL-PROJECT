@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Signin</title>
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="css/signin.css" rel="stylesheet">
+    <!-- hamburger CSS -->
+    <link rel="stylesheet" href="css/hamburger.css">
+    <!-- My Css -->
+    <link href="css/style.css" rel="stylesheet">
+    <!-- My Js -->
+    <script src="js/login.js"></script>
+    <!-- Google API -->
+    <script src="https://apis.google.com/js/platform.js" async defer></script>
+    <meta name="google-signin-client_id" content="674007506813-o5gqpeki60939l9go777gsrnqk8adr3n.apps.googleusercontent.com">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.js"></script>
+    <script src="https://code.jquery.com/jquery-2.2.0.js"></script>
+  </head>
+
+<body>
+  <header id="top" role="banner">
+    <div class="block">
+      <a href="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/" target="_self">
+      <img id="logoLogin" src="http://shenkar.html5-book.co.il/2015-2016/ws1/dev_185/images/logo.png"> </a>   
+    </div>
+  </header>
+
+  <div class="container-fluid">
+    <div class="jumbotron">
+    <h2 id="loginHeader">Search your daily Horoscope with<br> <span> ESTREJA! </span> </h2>
+    <div class="g-signin2" data-onsuccess="onSignIn"></div>
+    <br>
+    <!-- sign out from the system -->
+    <!-- <a class="g-signout2" href="#" onclick="signOut();">Sign out</a> -->
+    <div id="registerContainer">
+
+      <h2 id="loginHeader">Hello, Please fill in your details for ESTREJA: </h2>
+      <form class="form-signin" action="https://estreja.herokuapp.com/ws_horoscope/setNewUser" method="POST">
+        <label>Name: <input type="text" name="name" class="form-control" required autofocus></label> <br>
+        <label>Last Name: <input type="text" name="lastName" class="form-control" required autofocus></label> <br>
+        <label>Email address: <input name="email" type="email" class="form-control"  required autofocus> </label><br>   
+        <label>Gender:</label>
+        <label>Male <input class="gender" type="radio" class="form-control" name="gender" value="male" required autofocus></label>
+        <label>Female <input class="gender" type="radio" class="form-control" name="gender" value="female" required autofocus></label><br>
+        <label>Zodiac: 
+  			<select class="w3-select" name="zodiac">
+    			<option value="" disabled selected>Choose your Horoscope</option>
+    			<option value="aries">Aries- The Ram, Martch 21-April 19</option>
+    			<option value="taurus">Taurus- The Bull, April 20-May 20</option>
+    			<option value="gemini">Gemini- The Twins, May 21-June 20</option>
+    			<option value="cancer">Cancer- The Crab, June 21- July 22</option>
+    			<option value="leo">Leo- The Lion, July 23-August 22</option>
+    			<option value="virgo">Virgo- The virgin, August 23-September 22</option>
+    			<option value="libra">Libra- The Scales, September 23- October 22</option>
+    			<option value="scorpio">Scorpio- The Scorpion, October 23- November 21</option>
+    			<option value="sagittarius">Sagittarius- The Archer, November 22-December 21</option>
+    			<option value="capricorn">Capricorn- The Goat, December 22- January 19</option>
+    			<option value="aquarius">Aquarius- The Water Bearer, January 20- February 18</option>
+    			<option value="pisces">Pisces- The Fishes, February 19- March 20</option>
+  			</select>
+  		  </label><br>
+        <label>Travel:<br> 0<input type="range" name="travel" max="100" min="0" value="" required autofocus>100 </label><br>
+        <label>Art:<br> 0<input type="range" name="art" max="100" min="0" value="" required autofocus>100 </label><br>
+        <label>Nature:<br>  0<input type="range" name="nature" max="100" min="0" value="" required autofocus>100</label><br>
+        <input  name="imageUrl" id="myField" type="hidden"  value=""> 
+        <input type="submit" value="Send" id="submitForm">
+      </form>
+    </div>
+   </div>
+  </div> <!-- /container -->
+</body>
+</html>
+
